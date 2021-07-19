@@ -2,7 +2,7 @@
 include('conexao.php');
 $pesquisa = isset($_GET['pesquisa'])? $_GET['pesquisa']: '';
 $sql = "SELECT * from contatos where nome like '%$pesquisa%' or email like '%$pesquisa%' order by nome, email asc;";
-$resultado = $conexao -> query($sql) or die ($conexao -> error);
+$resultado = ($conexao -> query($sql)) or die ($conexao -> error);
 
 ?>
 
@@ -15,7 +15,7 @@ $resultado = $conexao -> query($sql) or die ($conexao -> error);
     <meta name="author" content="Paula">
     <meta name="keywords" content="Lista, Contatos, Lista de Contatos">
     <meta name="description" content="Lista de contatos prática com nome e email.">
-    <link rel="stylesheet" href="lista_pessoal.css">
+    <link rel="stylesheet" href="listapessoal.css">
 </head>
 
 <body>
@@ -32,12 +32,12 @@ $resultado = $conexao -> query($sql) or die ($conexao -> error);
         </header>
         <div id="quadro_adicionar">
             <form action="salvar.php" method="POST" class="adicionar">
-            <h3>Adicionar um contato</h3>
+            <h3>Adicionar Contato</h3>
             <label for="nome"><b>Nome</b></label><br>
             <input type="text" name="nome" id="nome" placeholder="Digite o nome"><br>
             <label for="email"><b>Email</b></label><br>
             <input type="email" name="email" id="email" placeholder="Digite o email"><br>
-            <button type="submit" id="salvar_contato">Salvar Contato</button><br>
+            <button type="submit" id="salvar_contato">Salvar</button><br>
             </form>
         </div>
         <div id="quadro_contatos">
@@ -50,7 +50,7 @@ $resultado = $conexao -> query($sql) or die ($conexao -> error);
                     </tr>
                 </thead>
                 <tbody>
-                <?php while ($dados = $resultado -> fetch_array()){ ?>
+                <?php while ($dados = ($resultado -> fetch_array())){ ?>
                     <tr>
                     <td><?php echo $dados['nome']; ?></td>
                     <td><?php echo $dados['email']; ?></td>

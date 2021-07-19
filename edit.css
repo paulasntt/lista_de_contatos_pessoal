@@ -27,14 +27,14 @@ h1 {
     border: 2px solid black;
     border-radius: 9px;
     background-color:rgb(96, 156, 156, 0.7);
-    height: 400px;
+    height: 430px;
     width: 320px;
 }
 
 #salvar {
-    width: 70px;
+    width: 80px;
     height: 28px;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 9px;
     cursor: pointer;
     margin-top: 15px;
@@ -51,8 +51,8 @@ h1 {
     border: 1px solid black;
     border-radius: 9px;
     cursor: pointer;
-    width: 60px;
-    height: 25px;
+    width: 80px;
+    height: 28px;
     transition: all 600ms ease;
 }
 

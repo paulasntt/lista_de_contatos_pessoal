@@ -15,21 +15,25 @@ $dados = $resultado->fetch_array();
         <meta name="author" content="Paula">
         <meta name="keywords" content="Lista, Contatos, Lista de Contatos">
         <meta name="description" content="Lista de contatos prática com nome e email.">
-        <link rel="stylesheet" href="editar.css">
+        <link rel="stylesheet" href="edit.css">
     </head>
 
     <body>
         <div id="caixa">
-            <form action="salvar_edicao.php?id=<?php echo $id ?>" method="POST" class="edit">
-                <h1>Editar Contato</h1>
-                <label for="novo_nome" id="label_nome"><b>Nome</b></label><br>
-                <input type="text" name="novo_nome" id="novo_nome" value="<?php echo $dados['nome']; ?>"><br>
-                <label for="novo_email" id="label_email"><b>Email</b></label><br>
-                <input type="email" name="novo_email" id="novo_email" value="<?php echo $dados['email']; ?>"><br>
-                <button type="submit" id="salvar">Salvar</button>
-            </form>
+            <div class="edit">
+                <form action="salvar_edicao.php?id=<?php echo $id ?>" method="POST">
+                    <h1>Editar Contato</h1>
+                    <label for="novo_nome" id="label_nome"><b>Nome</b></label><br>
+                    <input type="text" name="novo_nome" id="novo_nome" value="<?php echo $dados['nome']; ?>"><br>
+                    <label for="novo_email" id="label_email"><b>Email</b></label><br>
+                    <input type="email" name="novo_email" id="novo_email" value="<?php echo $dados['email']; ?>"><br>
+                    <button id="salvar">Salvar</button>
+                </form>
+                <a href="lista_pessoal.php"><button id="botao_voltar">Voltar</button></a>
+            </div>
 
         </div>
+
     </body>
 
     </html>

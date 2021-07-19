@@ -17,7 +17,7 @@ if ($conexao -> query($sql)) {
     location='lista_pessoal.php'; </script>");
 }
 die("<script>
-alert('Não foi possível salvar o seu contato.');
+alert('Não foi possível salvar o seu contato. Verifique se o email já está cadastrado e tente novamente.');
 location='lista_pessoal.php'; </script>");
 
 ?> 
