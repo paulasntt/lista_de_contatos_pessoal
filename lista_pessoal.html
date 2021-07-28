@@ -1,11 +1,3 @@
-<!-- <?php
-include('conexao.php');
-$pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '';
-$sql = "SELECT * from contatos where nome like '%$pesquisa%' or email like '%$pesquisa%' order by nome, email asc;";
-$resultado = ($conexao->query($sql)) or die($conexao->error);
-
-?> -->
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -37,11 +29,11 @@ $resultado = ($conexao->query($sql)) or die($conexao->error);
                 <input type="text" name="nome" id="nome" placeholder="Digite o nome"><br>
                 <label for="email"><b>Email</b></label><br>
                 <input type="email" name="email" id="email" placeholder="Digite o email"><br>
-                <button id="salvar_contato" onclick="salvar()">Salvar</button><br>
+                <button type="button" id="salvar_contato" onclick="salvar()">Salvar</button><br>
             </form>
         </div>
         <div id="quadro_contatos">
-            <table>
+            <table id="tab">
                 <thead>
                     <tr>
                         <th scope="col">Nome</th>
@@ -49,34 +41,18 @@ $resultado = ($conexao->query($sql)) or die($conexao->error);
                         <th scope="col">Opções</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- <?php while ($dados = ($resultado->fetch_array())) { ?> -->
-                        <tr>
-                            <td><!-- <?php echo $dados['nome']; ?> --></td>
-                            <td><!-- <?php echo $dados['email']; ?> --></td>
-                            <td>
-                                <div id="funcoes">
-                                    <a href="editar.php?id=<?php echo $dados['id']; ?>"> <button class="botao_editar" onclick="editar()">Editar</button></a>
-                                    <button class="botao_excluir" onclick="exc()">Excluir</button>
-                            </td>
-                            <script language="JavaScript">
-                                function exc() {
-                                    var perg = window.confirm('Certeza que deseja excluir?');
-                                    if (perg === true) {
-                                        window.location.href = "excluir.php?id=<?php echo $dados['id']; ?>";
-                                    }
-                                }
-                            </script>
-        </div>
-        </tr>
-                    <!-- <?php } ?> -->
+                <tbody id="tabela">
+
+
+
+
                 </tbody>
             </table>
-    </div>
-    <footer>
-        <p>Teste - Site de Lista de Contatos realizado por Paula.</p>
-    </footer>
-    <script src="index.js"></script>
+        </div>
+        <footer>
+            <p>Teste - Site de Lista de Contatos realizado por Paula.</p>
+        </footer>
+        <script src="index.js"></script>
     </div>
 
 </body>

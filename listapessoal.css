@@ -108,31 +108,37 @@ h3 {
     align-items: center;
     text-align: center;
 }
-.botao_editar {
+.editar {
     background-color:rgb(99, 243, 171);
     border: 1px solid black;
     border-radius: 9px;
     cursor: pointer;
     width: 75px;
     height: 25px;
+    margin: auto;
     transition: all 600ms ease;
 }
-.botao_editar:hover {
+.editar:hover {
     background-color: white;
     color: black;
 }
-.botao_excluir {
+.excluir {
     background-color: rgba(238, 90, 90, 0.7);
     border: 1px solid black;
     border-radius: 9px;
     cursor: pointer;
     width: 75px;
     height: 25px;
+    margin: auto;
     transition: all 600ms ease;
 }
-.botao_excluir:hover {
+.excluir:hover {
     background-color: white;
     color: black;
+}
+
+.tdb {
+    display: flex;
 }
 td, th {
     border: 1px solid black;
