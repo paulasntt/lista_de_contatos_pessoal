@@ -1,7 +1,18 @@
 <?php
 include('conexao.php');
-$pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '';
-$sql = "SELECT * from contatos where nome like '%$pesquisa%' or email like '%$pesquisa%' order by nome, email asc;";
+
+header('Content-Type: application/json');
+
+$dados =  $_GET['pesquisar'];
+
+$sql = "SELECT * from contatos where nome like '%$dados%' or email like '%$dados%' order by nome, email asc;";
 $resultado = ($conexao->query($sql)) or die($conexao->error);
 
+$contatos = ['contatos'=> []];
+if ($resultado->num_rows > 0) {
+    while ($linha = $resultado->fetch_array()) {
+        $contatos['contatos'][] = $linha;
+    }
+}
+echo json_encode($contatos);
 ?>

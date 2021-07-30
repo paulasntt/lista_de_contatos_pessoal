@@ -20,20 +20,17 @@ $dados = $resultado->fetch_array();
 
     <body>
         <div id="caixa">
-            <div class="edit">
-                <form action="salvar_edicao.php?id=<?php echo $id ?>" method="POST">
-                    <h1>Editar Contato</h1>
-                    <label for="novo_nome" id="label_nome"><b>Nome</b></label><br>
-                    <input type="text" name="novo_nome" id="novo_nome" value="<?php echo $dados['nome']; ?>"><br>
-                    <label for="novo_email" id="label_email"><b>Email</b></label><br>
-                    <input type="email" name="novo_email" id="novo_email" value="<?php echo $dados['email']; ?>"><br>
-                    <button id="salvar">Salvar</button>
-                </form>
-                <a href="lista_pessoal.php"><button id="botao_voltar">Voltar</button></a>
-            </div>
-
+            <form action="salvar_edicao.php?id=<?php echo $id ?>" method="POST">
+                <h1>Editar Contato</h1>
+                <label for="novo_nome" id="label_nome"><b>Nome</b></label><br>
+                <input type="text" name="novo_nome" id="novo_nome" value="<?php echo $dados['nome']; ?>"><br>
+                <label for="novo_email" id="label_email"><b>Email</b></label><br>
+                <input type="email" name="novo_email" id="novo_email" value="<?php echo $dados['email']; ?>"><br>
+                <button type="submit" id="salvar" onclick="salvarModf(<?php echo $dados['id']; ?>)">Salvar</button>
+            </form>
+            <a href="lista_pessoal.html"><button id="botao_voltar">Voltar</button><a>
         </div>
-
+        <script src="index.js"></script>
     </body>
 
     </html>

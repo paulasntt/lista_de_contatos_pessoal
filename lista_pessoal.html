@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="listapessoal.css">
 </head>
 
-<body onload="carregar()">
+<body>
     <div id="site">
         <header>
             <h1>Lista de Contatos</h1><br>
             <div id="pesquisar">
                 <form method="GET">
                     <label for="pesquisa"></label>
-                    <input type="text" name="pesquisa" id="pesquisa" placeholder="Digite o nome ou email">
-                    <button id="botao_pesquisa" onclick="pesquisar()">Pesquisar</button>
+                    <input type="text" name="pesquisa" id="pesquisa_" placeholder="Digite o nome ou email">
+                    <button id="botao_pesquisa" type="submit">Pesquisar</button>
                 </form>
             </div>
         </header>
@@ -29,7 +29,7 @@
                 <input type="text" name="nome" id="nome" placeholder="Digite o nome"><br>
                 <label for="email"><b>Email</b></label><br>
                 <input type="email" name="email" id="email" placeholder="Digite o email"><br>
-                <button type="button" id="salvar_contato" onclick="salvar()">Salvar</button><br>
+                <button type="submit" id="salvar_contato">Salvar</button><br>
             </form>
         </div>
         <div id="quadro_contatos">
@@ -42,10 +42,6 @@
                     </tr>
                 </thead>
                 <tbody id="tabela">
-
-
-
-
                 </tbody>
             </table>
         </div>

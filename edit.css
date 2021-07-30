@@ -2,6 +2,10 @@ body {
     font-size: 18px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     background-image: url(branco_fundo.jpg);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 95%;
 }
 h1 {
     display:flex;
@@ -14,21 +18,17 @@ h1 {
 }
 
 #caixa {
-    height: 100%;
+    border: 2px solid black;
+    border-radius: 9px;
+    background-color:rgb(96, 156, 156, 0.7);
+    height: 430px;
+    width: 320px;
     align-items: center;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: auto;
-}
-
-.edit {
-    border: 2px solid black;
-    border-radius: 9px;
-    background-color:rgb(96, 156, 156, 0.7);
-    height: 430px;
-    width: 320px;
 }
 
 #salvar {

@@ -1,15 +1,16 @@
 <?php
+
+header("Content-Type: application/json");
+$dados = json_decode(file_get_contents("php://input"));
+
 include('conexao.php');
-$id = $_GET["id"];
+$id = $dados->idcont;
 
 $sql = "DELETE from contatos where id= '$id'";
 if ($conexao->query($sql)) {
-    die("<script>
-        alert('O contato foi excluído com sucesso.');
-        location='lista_pessoal.html'; </script>");
-        
+    echo ('O contato foi excluído com sucesso.');
+} else {
+    echo ('Não foi possível excluir o seu contato.');
 }
-die("<script>
-alert('Não foi possível excluir o seu contato.');
-location='lista_pessoal.html'; </script>");
+
 ?>
