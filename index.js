@@ -1,17 +1,27 @@
 window.onload = function () {
     carregar();
     var butPesq = document.getElementById('botao_pesquisa');
-    butPesq.setAttribute('onclick', 'return pesquisar()');
-
+    butPesq.onclick = function () {
+        return pesquisar();
+    }
     var butSalvar = document.getElementById('salvar_contato');
-    butSalvar.setAttribute('onclick', 'return salvar()');
-
-
+    butSalvar.onclick = function () {
+        return validMail();
+    }
 }
-function salvar() {
 
-    var nome = document.getElementById('nome');
-    var email = document.getElementById('email');
+function validMail() {
+    var inpNome = document.getElementById('nome').value;
+    var inpMail = document.getElementById('email').value;
+
+    if (inpNome.length == 0 || inpMail.length == 0) {
+        alert('O nome ou o email inserido está vazio. Tente novamente.');
+    } else if (inpMail.indexOf('@') != -1 || inpMail.indexOf(' ') != -1) {
+        salvar()
+    }
+}
+
+function salvar() {
 
     let xhr = new XMLHttpRequest();
     let url = "salvar.php";
@@ -30,7 +40,7 @@ function salvar() {
 
     xhr.send(dados);
 
-    xhr.onload = function (){
+    xhr.onload = function () {
         resp = xhr.response;
         alert(resp);
         carregar();
@@ -38,7 +48,6 @@ function salvar() {
         email.value = '';
         return false;
     }
-    return false;
 }
 
 function pesquisar() {
@@ -46,7 +55,7 @@ function pesquisar() {
     var pesq = document.getElementById('pesquisa_');
 
     let xhr = new XMLHttpRequest();
-    let url = "pesquisar.php?pesquisar="+pesq.value;
+    let url = "contatos.php?pesquisa=" + pesq.value;
 
     xhr.open('GET', url);
 
@@ -58,7 +67,6 @@ function pesquisar() {
     xhr.onload = function () {
         var pesqFilt = xhr.response;
         trazer_lista(pesqFilt);
-        pesq.value = '';
         return false;
     }
     return false;
@@ -81,6 +89,10 @@ function carregar() {
 }
 
 function trazer_lista(jsonResponse) {
+    if (jsonResponse['contatos'] == 0) {
+        alert('Nenhum contato foi encontrado.');
+        return false;
+    }
     var tabela = document.getElementById('tabela');
     tabela.innerHTML = "";
     for (var i = 0; i < jsonResponse['contatos'].length; i++) {
@@ -125,39 +137,60 @@ function trazer_lista(jsonResponse) {
     }
 }
 
-function excluir (nome, email, id) {
+function excluir(nome, email, id) {
     let confirma = window.confirm('Você tem certeza que deseja excluir este contato?');
     if (!confirma) {
         alert('Operação cancelada pelo usuário.')
     } else {
         exCont(id);
     }
-
-    function exCont(id) {
-        let xhr = new XMLHttpRequest();
-        let url = 'excluir.php';
-        inform = {'idcont': id}
-        var idCont = JSON.stringify(inform)
-
-
-        xhr.open('DELETE', url);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(idCont);
-
-        xhr.onload = function (){
-            resp = xhr.response;
-            alert(resp);
-            carregar()
-        }
-
-    }   
 }
+
+function exCont(id) {
+    let xhr = new XMLHttpRequest();
+    let url = 'excluir.php';
+    inform = { 'idcont': id }
+    var idCont = JSON.stringify(inform)
+
+
+    xhr.open('DELETE', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(idCont);
+
+    xhr.onload = function () {
+        resp = xhr.response;
+        alert(resp);
+        carregar()
+    }
+}
+
 
 function editar(id) {
-    location = ('editar.php?id='+ id);
+    var idCont = id
+
+    let xhr = new XMLHttpRequest();
+    let url = "contatos.php?idCont=" + idCont;
+
+    xhr.open('GET', url);
+
+    xhr.responseType = 'json';
+
+    xhr.send();
+
+    xhr.onload = function () {
+        let resp = xhr.response;
+        if (resp['contatos'].length == 0) {
+            alert('O contato não foi encontrado. Tente novamente.');
+            carregar()
+            return false;
+        }
+        location = ('editar.php?id=' + id);
+        return false;
+    }
 }
 
-function salvarModf (idContato){
+
+function salvarModf(idContato) {
     var novo_nome = document.getElementById('novo_nome').value;
     var novo_email = document.getElementById('novo_email').value;
 
@@ -167,12 +200,12 @@ function salvarModf (idContato){
     xhr.open('PUT', url);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
-    
+
     var dados = JSON.stringify({ "nome": novo_nome, "email": novo_email, "id": idContato });
 
     xhr.send(dados);
 
-    xhr.onload = function (){
+    xhr.onload = function () {
         resp = xhr.response;
         alert(resp);
         window.location = 'lista_pessoal.html';

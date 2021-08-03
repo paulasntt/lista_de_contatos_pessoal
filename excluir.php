@@ -7,10 +7,14 @@ include('conexao.php');
 $id = $dados->idcont;
 
 $sql = "DELETE from contatos where id= '$id'";
-if ($conexao->query($sql)) {
+if ($conexao->query($sql) and $conexao->affected_rows > 0) {
+    http_response_code(200);
     echo ('O contato foi excluído com sucesso.');
+    return false;
 } else {
-    echo ('Não foi possível excluir o seu contato.');
+    http_response_code(400);
+    echo ('Esse contato pode ter sido excluído em outra página.');
+    return false;
 }
 
 ?>

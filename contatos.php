@@ -1,16 +1,26 @@
 <?php
-
 include("conexao.php");
-header('Content-Type: application/json');
-$sql = " SELECT * FROM contatos where nome like '%%' or email LIKE '%%' ORDER BY nome, email";
+
+$pesquisa = isset($_GET['pesquisa']) ? $_GET['pesquisa'] : "";
+$id = isset($_GET['idCont']) ? $_GET['idCont'] : false;
+
+$sql = " SELECT * FROM contatos";
+
+if ($id) {
+    $sql .= " WHERE id = '$id'";
+} else {
+    $sql .= " WHERE nome like '%$pesquisa%' or email LIKE '%$pesquisa%'";
+}
+$sql .= " ORDER BY nome, email";
 
 $result = $conexao->query($sql);
 
-$contatos = ['contatos' => []];
-if ($result->num_rows > 0) {
+$contatos = ["contatos" => []];
+$retornouLinhas = $result->num_rows > 0;
+if ($retornouLinhas) {
     while ($linha = $result->fetch_array()) {
-        $contatos['contatos'][] = $linha;
+        $contatos["contatos"][] = $linha;
     }
-
-    echo json_encode($contatos);
+    
 }
+echo json_encode($contatos);

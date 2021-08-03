@@ -31,7 +31,7 @@ h1 {
     margin: auto;
 }
 
-#salvar {
+#botao_editsave {
     width: 80px;
     height: 28px;
     border: 1px solid black;
@@ -42,7 +42,7 @@ h1 {
     transition: all 600ms ease;
 }
 
-#salvar:hover {
+#botao_editsave:hover {
     background-color: white;
 }
 

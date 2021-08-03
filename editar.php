@@ -26,7 +26,7 @@ $dados = $resultado->fetch_array();
                 <input type="text" name="novo_nome" id="novo_nome" value="<?php echo $dados['nome']; ?>"><br>
                 <label for="novo_email" id="label_email"><b>Email</b></label><br>
                 <input type="email" name="novo_email" id="novo_email" value="<?php echo $dados['email']; ?>"><br>
-                <button type="submit" id="salvar" onclick="salvarModf(<?php echo $dados['id']; ?>)">Salvar</button>
+                <button type="submit" id="botao_editsave" onclick="salvarModf(<?php echo $dados['id']; ?>)">Salvar</button>
             </form>
             <a href="lista_pessoal.html"><button id="botao_voltar">Voltar</button><a>
         </div>
