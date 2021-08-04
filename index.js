@@ -37,13 +37,21 @@ function validMail() {
 function salvar() {
     var inpNome = document.getElementById('nome').value;
     var inpMail = document.getElementById('email').value;
-    emailvali = validMail(inpMail.value)
-    if (!emailvali) {
-        alert('O email digitado é inválido.')
+    emailvali = validMail(inpMail.value);
+    if (inpNome.length == 0 && inpMail.length == 0) {
+        alert('Os campos estão vazios. Tente novamente.')
         return false;
     }
     if (inpNome.length == 0 || inpNome == " ") {
-        alert('Não foi possível salvar o seu contato pois o campo do nome está vazio. Tente novamente.')
+        alert('Não foi possível salvar o seu contato pois o campo do nome está vazio. Tente novamente.');
+        return false;
+    }
+    if (inpMail.length == 0 || inpMail == " ") {
+        alert('Não foi possível salvar o seu contato pois o campo do email está vazio. Tente novamente.')
+        return false;
+    }
+    if (!emailvali) {
+        alert('O email digitado é inválido.');
         return false;
     }
 
@@ -163,7 +171,7 @@ function trazer_lista(jsonResponse) {
 }
 
 function excluir(nome, email, id) {
-    let confirma = window.confirm('Você tem certeza que deseja excluir este contato?');
+    let confirma = window.confirm(`Você tem certeza que deseja excluir este contato? \nNome: ${nome} \nEmail: ${email}`);
     if (!confirma) {
         alert('Operação cancelada pelo usuário.')
     } else {
