@@ -6,22 +6,46 @@ window.onload = function () {
     }
     var butSalvar = document.getElementById('salvar_contato');
     butSalvar.onclick = function () {
-        return validMail();
+        return salvar();
     }
 }
 
 function validMail() {
-    var inpNome = document.getElementById('nome').value;
     var inpMail = document.getElementById('email').value;
 
-    if (inpNome.length == 0 || inpMail.length == 0) {
-        alert('O nome ou o email inserido está vazio. Tente novamente.');
-    } else if (inpMail.indexOf('@') != -1 || inpMail.indexOf(' ') != -1) {
-        salvar()
+    var posArroba = inpMail.lastIndexOf('@');
+    var tamEmail = inpMail.length;
+    var emailusu = inpMail.substring(0, posArroba);
+    var tamUsu = emailusu.length >= 1;
+    var domin = inpMail.substring(posArroba, tamEmail);
+    var nomeDomin = domin.substring(0, domin.indexOf('.'));
+    var tamDomin = nomeDomin.length >= 3;
+    var pontoDomin = domin.indexOf('.') >= 1;
+    var pontoFinal = domin.lastIndexOf('.') < domin.length -1;
+    var semEsp = inpMail.indexOf(' ') == -1;
+    var possuiArroba = posArroba != -1 && emailusu.indexOf('@') == -1;
+
+    var emailvalido = (tamUsu && tamDomin && pontoDomin && pontoFinal && semEsp && possuiArroba);
+
+    if (emailvalido) {
+        return true;
     }
+    return false;
 }
 
+
 function salvar() {
+    var inpNome = document.getElementById('nome').value;
+    var inpMail = document.getElementById('email').value;
+    emailvali = validMail(inpMail.value)
+    if (!emailvali) {
+        alert('O email digitado é inválido.')
+        return false;
+    }
+    if (inpNome.length == 0 || inpNome == " ") {
+        alert('Não foi possível salvar o seu contato pois o campo do nome está vazio. Tente novamente.')
+        return false;
+    }
 
     let xhr = new XMLHttpRequest();
     let url = "salvar.php";
@@ -46,8 +70,9 @@ function salvar() {
         carregar();
         nome.value = '';
         email.value = '';
-        return false;
     }
+    return false;
+
 }
 
 function pesquisar() {
