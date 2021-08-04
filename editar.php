@@ -30,7 +30,7 @@ $dados = $resultado->fetch_array();
             </form>
             <a href="lista_pessoal.html"><button id="botao_voltar">Voltar</button><a>
         </div>
-        <script src="index.js"></script>
+        <script src="editar.js"></script>
     </body>
 
     </html>
