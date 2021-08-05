@@ -39,19 +39,33 @@ function salvar() {
     var inpMail = document.getElementById('email').value;
     emailvali = validMail(inpMail.value);
     if (inpNome.length == 0 && inpMail.length == 0) {
-        alert('Os campos estão vazios. Tente novamente.')
+        alert('Os campos estão vazios. Tente novamente.');
+        nome.style.border = 'red 2px solid';
+        nome.style.outline = 'none';
+        nome.focus()
+        email.style.border = 'red 2px solid';
+        email.style.outline = 'none';
         return false;
     }
     if (inpNome.length == 0 || inpNome == " ") {
         alert('Não foi possível salvar o seu contato pois o campo do nome está vazio. Tente novamente.');
+        nome.style.border = 'red 2px solid';
+        nome.style.outline = 'none';
+        nome.focus();
         return false;
     }
     if (inpMail.length == 0 || inpMail == " ") {
-        alert('Não foi possível salvar o seu contato pois o campo do email está vazio. Tente novamente.')
+        alert('Não foi possível salvar o seu contato pois o campo do email está vazio. Tente novamente.');
+        email.style.border = 'red 2px solid';
+        email.style.outline = 'none';
+        email.focus();
         return false;
     }
     if (!emailvali) {
         alert('O email digitado é inválido.');
+        email.style.border = 'red 2px solid';
+        email.style.outline = 'none';
+        email.focus();
         return false;
     }
 
@@ -79,8 +93,9 @@ function salvar() {
         nome.value = '';
         email.value = '';
     }
+    nome.style.border = '2px solid black';
+    email.style.border = '2px solid black';
     return false;
-
 }
 
 function pesquisar() {
